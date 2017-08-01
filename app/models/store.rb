@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Store < ApplicationRecord
   has_many :stocks
   has_many :books, through: :stocks
@@ -13,13 +15,13 @@ class Store < ApplicationRecord
             WHERE p.id = #{publisher.id}
         );
     SQL
-    ids = ActiveRecord::Base.connection.select_all(sql).map{|e| e['id']}
+    ids = ActiveRecord::Base.connection.select_all(sql).map { |e| e['id'] }
     where('id IN (?)', ids)
   end)
 
   def mark_books_as_sold(books_ids)
     stocks.where('book_id IN (?)', books_ids).find_each do |stock|
-      stock.update_attribute :amount, 0
+      stock.update! amount: 0
     end
   end
 end

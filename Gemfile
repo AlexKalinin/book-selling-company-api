@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
@@ -23,18 +24,20 @@ gem 'jbuilder', '~> 2.5'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+gem 'rubocop', require: false
+
 group :development, :test do
   gem 'byebug'
-  gem 'pry-rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_girl'
+  gem 'ffaker'
   gem 'pry-byebug'
-  gem 'pry-stack_explorer'
   gem 'pry-doc'
+  gem 'pry-rails'
+  gem 'pry-stack_explorer'
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'factory_girl'
-  gem 'capybara'
-  gem 'ffaker'
-  gem 'database_cleaner'
 end
 
 group :development do

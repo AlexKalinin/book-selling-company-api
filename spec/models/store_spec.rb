@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Store, type: :model do
@@ -5,16 +7,16 @@ RSpec.describe Store, type: :model do
   it { should have_many(:books) }
 
   describe 'fetch list of stores which have available books from a particular publisher' do
-    let (:publisher_a) { create :publisher }
-    let (:publisher_b) { create :publisher }
-    let (:book_a) { create :book, publisher: publisher_a}
-    let (:book_b) { create :book, publisher: publisher_a}
-    let (:book_c) { create :book, publisher: publisher_a}
-    let (:book_d) { create :book, publisher: publisher_b}
-    let (:store_a) { create :store }
-    let (:store_b) { create :store }
-    let (:store_c) { create :store }
-    let (:store_d) { create :store }
+    let(:publisher_a) { create :publisher }
+    let(:publisher_b) { create :publisher }
+    let(:book_a) { create :book, publisher: publisher_a }
+    let(:book_b) { create :book, publisher: publisher_a }
+    let(:book_c) { create :book, publisher: publisher_a }
+    let(:book_d) { create :book, publisher: publisher_b }
+    let(:store_a) { create :store }
+    let(:store_b) { create :store }
+    let(:store_c) { create :store }
+    let(:store_d) { create :store }
 
     before :each do
       Stock.create book: book_a, store: store_a, amount: 3
@@ -32,18 +34,17 @@ RSpec.describe Store, type: :model do
       expect(store_ids).to include store_c.id
     end
 
-    it 'don''t see in results unexpected stores' do
+    it "don't see in results unexpected stores" do
       store_ids = Store.with_available_books_by_publisher(publisher_a).ids
       expect(store_ids).not_to include store_d.id
     end
   end
 
-
   describe 'mark list of books as sold for a particular shop' do
-    let (:book_a) { create :book }
-    let (:book_b) { create :book }
-    let (:book_c) { create :book }
-    let (:store_a) { create :store }
+    let(:book_a) { create :book }
+    let(:book_b) { create :book }
+    let(:book_c) { create :book }
+    let(:store_a) { create :store }
 
     before :each do
       Stock.create book: book_a, store: store_a, amount: 10
@@ -62,5 +63,4 @@ RSpec.describe Store, type: :model do
       expect(store_books_amounts(store_a.id, book_ids)).to eql [0, 0, 0]
     end
   end
-
 end

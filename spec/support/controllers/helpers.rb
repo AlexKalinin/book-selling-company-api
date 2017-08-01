@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Controllers
   module Helpers
     # parse response body, return JSON-object

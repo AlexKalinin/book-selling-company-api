@@ -1,0 +1,23 @@
+Documentation:
+  Enabled: false
+
+AbcSize:
+  Enabled: false
+
+LineLength:
+  Max: 120
+
+MethodLength:
+  Max: 12
+
+ClassLength:
+  Max: 500
+
+ModuleLength:
+  Max: 500
+
+BlockLength:
+  Max: 500
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always

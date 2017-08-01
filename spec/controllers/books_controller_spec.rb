@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe BooksController, type: :controller do
-
   describe 'PUT #mark_as_sold' do
-    let (:book_a) { create :book }
-    let (:book_b) { create :book }
-    let (:book_c) { create :book }
-    let (:store_a) { create :store }
-    let (:store_b) { create :store }
+    let(:book_a) { create :book }
+    let(:book_b) { create :book }
+    let(:book_c) { create :book }
+    let(:store_a) { create :store }
+    let(:store_b) { create :store }
 
     before :each do
       Stock.create book: book_a, store: store_a, amount: 10
@@ -34,5 +35,4 @@ RSpec.describe BooksController, type: :controller do
       expect(store_books_amounts(store_b.id, all_books_ids)).to eql [11, 11, 11]
     end
   end
-
 end
