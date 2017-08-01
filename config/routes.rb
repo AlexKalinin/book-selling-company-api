@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/stores/available_books_by_publisher/:publisher_name', to: 'stores#available_books_by_publisher'
+  put '/store/:id/books/mark_as_sold', to: 'books#mark_as_sold'
 end
